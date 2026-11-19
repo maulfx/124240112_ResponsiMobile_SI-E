@@ -10,9 +10,7 @@ class ArticleModel {
   final String summary;   // ringkasan isi — tampil di detail
   final String publishedAt; // tanggal publish — tampil di detail
   final String type;      // "news" / "blogs" / "reports" — agar FavoriteService tahu jenisnya
-  final double rating;
-  final int reviewCount;
-  final String mealType;
+
 
   /// Menyimpan JSON mentah dari API agar field tambahan tetap bisa diakses tanpa ubah Model.
   final Map<String, dynamic> rawData;
@@ -27,9 +25,6 @@ class ArticleModel {
     required this.summary,
     required this.publishedAt,
     required this.type,
-    required this.rating,
-    required this.reviewCount,
-    required this.mealType,
     this.rawData = const {},
   });
 
@@ -56,9 +51,6 @@ class ArticleModel {
       newsSite: (json['newsSite'] ?? json['news_site'] ?? '').toString(),
       summary: (json['summary'] ?? '').toString(),
       publishedAt: (json['publishedAt'] ?? json['published_at'] ?? '').toString(),
-      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
-      reviewCount: json['reviewCount'] as int? ?? 0,
-      mealType: (json['mealType'] ?? '').toString(),
       type: type,
       rawData: Map<String, dynamic>.from(rawData ?? json),
     );
@@ -74,9 +66,6 @@ class ArticleModel {
       'newsSite': newsSite,
       'summary': summary,
       'publishedAt': publishedAt,
-      'rating': rating,
-      'reviewCount': reviewCount,
-      'mealType': mealType,
       'type': type,
       if (rawData.isNotEmpty) 'rawData': rawData,
     };
@@ -96,9 +85,6 @@ class ArticleModel {
       newsSite: map['newsSite'] as String? ?? '',
       summary: map['summary'] as String? ?? '',
       publishedAt: map['publishedAt'] as String? ?? '',
-      rating: (map['rating'] as num?)?.toDouble() ?? 0.0,
-      reviewCount: map['reviewCount'] as int? ?? 0,
-      mealType: map['mealType'] as String? ?? '',
       type: map['type'] as String? ?? '',
       rawData: savedRaw is Map ? Map<String, dynamic>.from(savedRaw) : const {},
     );

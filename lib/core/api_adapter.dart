@@ -566,7 +566,7 @@ class ApiAdapter {
     'spesifikasi_barang', 'spesifikasi', 'kegunaan', 'fungsi', 'keunggulan', 'garansi',
     'manfaat_buah', 'manfaat', 'khasiat', 'kandungan_gizi', 'gizi', 'nutrisi', 'vitamin',
     'kalori', 'ciri_ciri', 'lirik', 'catatan', 'ulasan', 'komentar', 'pesan', 'kutipan',
-    'fitur', 'arti', 'makna', 'definisi', 'latar_belakang',
+    'fitur', 'arti', 'makna', 'definisi', 'latar_belakang', 'rating', 'reviewCount', 'mealType',
   ];
 
   static const List<String> _dateAliases = [
@@ -593,7 +593,7 @@ class ApiAdapter {
     'dibuat_pada', 'diperbarui_pada', 'dipublikasikan', 'diterbitkan', 'dirilis',
     'jadwal', 'periode', 'masa',
   ];
-
+  
   /// Otomatis mencari List item utama di dalam JSON (root Array, nested Object,
   /// maupun List-di-dalam-List yang otomatis di-flatten).
   static List<Map<String, dynamic>> autoExtractList(dynamic rawResponse) {

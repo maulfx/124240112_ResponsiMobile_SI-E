@@ -227,7 +227,8 @@ class _DetailPageState extends State<DetailPage> {
                   Row(children: [
                     const Icon(Icons.star, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.rating.toStringAsFixed(1),                // ← EDIT: .rating
+                    Text ('Rating: '),
+                    Text(article.extra('rating', '0.0'),                // ← EDIT: .rating
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
@@ -235,21 +236,48 @@ class _DetailPageState extends State<DetailPage> {
                   // ── FITUR: AUTHOR ─────────────────────────────
                   // EDIT: ganti 'article.newsSite' dengan field author model kamu
                   Row(children: [
-                    const Icon(Icons.rate_review, size: 16, color: Colors.grey),
+                    const Icon(Icons.star, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.reviewCount.toString(),                // ← EDIT: .reviewCount
+                    Text ('Review Count: '),
+                    Text(article.extra('reviewCount', '0'),                // ← EDIT: .rating
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 4),
+
+                  Row(children: [
+                    const Icon(Icons.star, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text ('Meal Type: '),
+                    Text(article.extra('mealType', '0.0'),                // ← EDIT: .rating
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
                   // ─────────────────────────────────────────────
                   Row(children: [
-                    const Icon(Icons.restaurant, size: 16, color: Colors.grey),
+                    const Icon(Icons.local_dining, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.mealType,                // ← EDIT: .mealType
+                    Text ('Servings: '),
+                    Text(article.extra('servings', '0.0'),                // ← EDIT: .rating
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 4),
+                  
+                  Row(children: [
+                    const Icon(Icons.adjust, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text ('Difficulty: '),
+                    Text(article.extra('difficulty'),                // ← EDIT: .rating
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
                   // ── FITUR: TANGGAL PUBLISH ────────────────────
+                  Row(children: [
+                    const Icon(Icons.local_fire_department, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text(article.extra('caloriesPerServing', '0.0'),                // ← EDIT: .rating
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 4),
                   // EDIT: ganti 'article.publishedAt' dengan field tanggal model kamu
                   Row(children: [
                     const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
