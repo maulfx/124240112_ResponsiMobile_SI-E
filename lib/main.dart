@@ -1,0 +1,53 @@
+
+import 'package:flutter/material.dart';
+import 'services/auth_service.dart';
+import 'pages/login_page.dart';  
+import 'pages/home_page.dart';   
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized(); 
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Spaceflight News',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF4CAF50), // ← EDIT: ganti warna tema utama
+        ),
+        useMaterial3: true,
+      ),
+
+    
+      home: FutureBuilder<String?>(
+        future: AuthService.getLoggedInUser(), // baca SharedPreferences
+        builder: (context, snapshot) {
+
+          // Saat masih membaca SharedPreferences → tampilkan loading spinner
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          final String? loggedInUser = snapshot.data;
+
+          if (loggedInUser != null && loggedInUser.isNotEmpty) {
+            // ── Ada user tersimpan → langsung ke HomePage tanpa login lagi
+            return HomePage(username: loggedInUser); // ← EDIT: ganti nama class & parameter
+          } else {
+            // ── Tidak ada user → ke LoginPage
+            return const LoginPage(); // ← EDIT: ganti nama class jika beda
+          }
+        },
+      ),
+      // ══════════════════════════════════════════════════════════
+    );
+  }
+}
